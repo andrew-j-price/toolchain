@@ -1,12 +1,12 @@
 ---
 
-- name: enable Ansible repo
+- name: enable Ansible ppa repo
   apt_repository: repo='ppa:ansible/ansible'
 
 - name: add Docker apt key
   apt_key: keyserver=keyserver.ubuntu.com id=36A1D7869245C8950F966E92D8576A8BA88D21E9
 
-- name: add Docker repo
+- name: add Docker Debian based repo
   apt_repository: repo='deb https://get.docker.com/ubuntu docker main' state=present
 
 - name: install packages on Debian based

@@ -1,17 +1,90 @@
 ---
 
+- name: Copy EPEL yum repo file
+  copy: 
+    src: yum_repos/epel.repo
+    dest: /etc/yum.repos.d/epel.repo
+    owner: root 
+    group: root 
+    mode: 0644
+
+# yumrepo is new in Ansible version 2.1
+#- name: Add EPEL repository
+#  yumrepo:
+#    name: epel
+#    description: EPEL YUM repo
+#    baseurl: http://download.fedoraproject.org/pub/epel/$releasever/$basearch/
+
+- name: Copy Docker yum repo file
+  copy: 
+    src: yum_repos/docker.repo
+    dest: /etc/yum.repos.d/docker.repo
+    owner: root 
+    group: root 
+    mode: 0644
+
+- name: Get Virtualbox yum repo
+  get_url: 
+    url: http://download.virtualbox.org/virtualbox/rpm/rhel/virtualbox.repo 
+    dest: /etc/yum.repos.d/virtualbox.repo 
+    mode: 0644
+
 - name: install packages on RHEL based
   yum: name={{ item }} state=latest update_cache=yes
   with_items:
-    - curl 
+    - curl
+    - docker-engine
     - freetds
     - freetds-devel
-    - git 
+    - git
     - mariadb
-    - monit 
-    - nc 
-    - openssh-server 
-    - tcpdump 
-    - vim 
-    - virtualbox
+    - monit
+    - nc
+    - nmap
+    - openldap-clients
+    - openssh-server
+    - python-devel
+    - python-httplib2
+    - python-jinja2
+    - python-keyczar
+    - python-paramiko
+    - python-pip
+    - python-setuptools
+    - PyYAML
+    - tcpdump
+    - vim
+    - VirtualBox-5.0
     - wget
+
+- name: Ensure Docker is loaded at startup on RHEL based
+  service: 
+    name: docker 
+    enabled: yes
+
+- name: Ensure Docker is running on RHEL based
+  service: 
+    name: docker 
+    state: started
+
+- name: install packages via pip on RHEL based
+  pip: name={{ item }} state=latest
+  with_items:
+    - ansible
+    - python-ceilometerclient
+    - python-cinderclient
+    - python-glanceclient 
+    - python-heatclient 
+    - python-keystoneclient 
+    - python-neutronclient 
+    - python-novaclient 
+    - python-openstackclient
+    - python-swiftclient 
+    - python-troveclient
+
+- name: download vagrant for RHEL
+  get_url: url={{ vagrant_package_rhel_source }} dest={{ vagrant_package_rhel_install }} mode=744
+
+- name: install rpm packages
+  yum: name={{ item }}
+  with_items:
+    - "{{ vagrant_package_rhel_install }}"

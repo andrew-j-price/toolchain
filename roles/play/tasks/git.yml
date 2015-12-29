@@ -65,5 +65,5 @@
     dest: "{{ git_repo_folder }}/vagrant-ansible-building-blocks"
     update: no
 
-- name: Ensure owner is set correctly # needed for Vagrant configuration
-  shell: chown -R {{ my_user }}:{{ my_group }} {{ git_repo_folder }}
+#- name: Ensure owner is set correctly # needed for Vagrant provisioning
+#  shell: chown -R {{ my_user }}:{{ my_group }} {{ git_repo_folder }}

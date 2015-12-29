@@ -5,13 +5,23 @@
     name: "{{ my_group }}"
     state: present
 
-- name: Create primary user account
+- name: Create primary user account on Debian
   user: 
     name: "{{ my_user }}" 
     group: "{{ my_group }}" 
     shell: /bin/bash 
-    groups: "{{ my_groups }}" 
+    groups: "{{ my_groups_debian }}" 
     append: yes
+  when: ansible_os_family =='Debian'
+
+- name: Create primary user account on RHEL
+  user: 
+    name: "{{ my_user }}" 
+    group: "{{ my_group }}" 
+    shell: /bin/bash 
+    groups: "{{ my_groups_rhel }}" 
+    append: yes
+  when: ansible_os_family =='RedHat'
 
 - name: Add my_user variable to sudoers
   lineinfile: >
