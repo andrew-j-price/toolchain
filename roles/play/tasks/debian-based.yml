@@ -1,0 +1,50 @@
+---
+
+- name: enable Ansible repo
+  apt_repository: repo='ppa:ansible/ansible'
+
+- name: add Docker apt key
+  apt_key: keyserver=keyserver.ubuntu.com id=36A1D7869245C8950F966E92D8576A8BA88D21E9
+
+- name: add Docker repo
+  apt_repository: repo='deb https://get.docker.com/ubuntu docker main' state=present
+
+- name: install packages on Debian based
+  apt: name={{ item }} state=latest update_cache=yes
+  with_items:
+    - ansible
+    - curl
+    - dpkg
+    - freetds-bin
+    - freetds-dev
+    - git
+    - lxc-docker
+    - ldap-utils
+    - monit
+    - mysql-client
+    - netcat-openbsd
+    - nmap
+    - openssh-server
+    - python-ceilometerclient
+    - python-cinderclient
+    - python-glanceclient 
+    - python-heatclient 
+    - python-keystoneclient 
+    - python-neutronclient 
+    - python-novaclient 
+    - python-openstackclient
+    - python-swiftclient 
+    - python-troveclient
+    - software-properties-common # For Ansible
+    - tcpdump
+    - vim
+    - virtualbox
+    - wget
+
+- name: download vagrant for Debian
+  get_url: url={{ vagrant_package_debian_source }} dest={{ vagrant_package_debian_install }} mode=744
+
+- name: install deb packages
+  apt: deb={{ item }}
+  with_items:
+    - "{{ vagrant_package_debian_install }}"

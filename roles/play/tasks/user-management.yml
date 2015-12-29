@@ -1,0 +1,46 @@
+---
+
+- name: Create primary user group
+  group: 
+    name: "{{ my_group }}"
+    state: present
+
+- name: Create primary user account
+  user: 
+    name: "{{ my_user }}" 
+    group: "{{ my_group }}" 
+    shell: /bin/bash 
+    groups: "{{ my_groups }}" 
+    append: yes
+
+- name: Add my_user variable to sudoers
+  lineinfile: >
+    dest=/etc/sudoers
+    state=present
+    regexp="^{{ my_user }} ALL"
+    line="{{ my_user }} ALL=(ALL) NOPASSWD:ALL"
+    validate='visudo -cf %s'
+
+- name: Generate SSH key
+  user: 
+    name: "{{ my_user }}" 
+    generate_ssh_key: yes 
+    ssh_key_bits: 2048 
+    ssh_key_file: ".ssh/id_rsa"
+
+- name: Add ssh public key to my_user variable account
+  authorized_key: 
+    user: "{{ my_user }}"
+    key: "{{ item }}"
+    state: present 
+    exclusive: yes
+  with_file:
+    - authorized_keys
+
+- name: Add ssh public key to root
+  authorized_key: 
+    user: root
+    key: "{{ item }}"
+    state: present
+  with_file:
+    - authorized_keys

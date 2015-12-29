@@ -1,0 +1,9 @@
+---
+
+#- name: Add vagrant box
+#  shell: vagrant box add hashicorp/precise64 --provider virtualbox
+#  ignore_errors: yes
+
+#- name: Add vagrant box
+#  shell: vagrant box add ubuntu/trusty64
+#  ignore_errors: yes

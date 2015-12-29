@@ -1,0 +1,17 @@
+---
+
+- name: install packages on RHEL based
+  yum: name={{ item }} state=latest update_cache=yes
+  with_items:
+    - curl 
+    - freetds
+    - freetds-devel
+    - git 
+    - mariadb
+    - monit 
+    - nc 
+    - openssh-server 
+    - tcpdump 
+    - vim 
+    - virtualbox
+    - wget
