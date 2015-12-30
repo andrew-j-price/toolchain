@@ -4,9 +4,9 @@
   include: debian-based.yml
   when: ansible_os_family =='Debian'
 
-- name: Configure environment on CentOS/Fedora/RHEL version 7
+- name: Configure environment on CentOS/Fedora/RHEL
   include: rhel-based.yml
-  when: ansible_os_family =='RedHat' and ansible_distribution_major_version|int == 7
+  when: ansible_os_family =='RedHat'
 
 - name: Configure User/Groups/SSH Keys
   include: user-management.yml

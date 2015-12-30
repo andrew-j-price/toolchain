@@ -1,12 +1,13 @@
 ---
 
 - name: Copy EPEL yum repo file
-  copy: 
+  copy:
     src: yum_repos/epel.repo
     dest: /etc/yum.repos.d/epel.repo
-    owner: root 
-    group: root 
+    owner: root
+    group: root
     mode: 0644
+  when: ansible_distribution_major_version|int == 7
 
 # yumrepo is new in Ansible version 2.1
 #- name: Add EPEL repository
@@ -56,16 +57,6 @@
     - VirtualBox-5.0
     - wget
 
-- name: Ensure Docker is loaded at startup on RHEL based
-  service: 
-    name: docker 
-    enabled: yes
-
-- name: Ensure Docker is running on RHEL based
-  service: 
-    name: docker 
-    state: started
-
 - name: install packages via pip on RHEL based
   pip: name={{ item }} state=latest
   with_items:
@@ -88,3 +79,13 @@
   yum: name={{ item }}
   with_items:
     - "{{ vagrant_package_rhel_install }}"
+
+- name: Ensure services are enabled on startup on RHEL based systems
+  service: name={{ item }} enabled=yes
+  with_items:
+    - docker
+
+- name: Ensure services are running on RHEL based systems
+  service: name={{ item }} state=started
+  with_items:
+    - docker

@@ -48,3 +48,13 @@
   apt: deb={{ item }}
   with_items:
     - "{{ vagrant_package_debian_install }}"
+
+- name: Ensure services are enabled on startup on Debian based systems
+  service: name={{ item }} enabled=yes
+  with_items:
+    - docker
+
+- name: Ensure services are running on Debian based systems
+  service: name={{ item }} state=started
+  with_items:
+    - docker
