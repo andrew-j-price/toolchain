@@ -1,0 +1,10 @@
+---
+
+- name: set owner on git_repo_folder
+  shell: chown -R {{ my_user }}:{{ my_group }} {{ git_repo_folder }}
+
+- name: restart haproxy
+  service: name=haproxy state=restarted
+
+- name: reload haproxy
+  service: name=haproxy state=reloaded

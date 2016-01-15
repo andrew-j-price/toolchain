@@ -28,5 +28,4 @@ $configure = <<SCRIPT
   sudo apt-get update
   sudo apt-get install -y ansible
   ansible-playbook -vvv /vagrant/play.yml -c local
-  chown -R andrew:andrew /home/andrew/git               #not a preferred solution, but necessary on Vagrant provisioning
 SCRIPT

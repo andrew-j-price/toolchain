@@ -28,42 +28,46 @@
     repo: "https://github.com/andrew-j-price/ansible-freetds.git"
     dest: "{{ git_repo_folder }}/ansible-freetds"
     update: no
+  notify: set owner on git_repo_folder
 
 - name: download git repo
   git: 
     repo: "https://github.com/andrew-j-price/ansible-haproxy.git"
     dest: "{{ git_repo_folder }}/ansible-haproxy"
     update: no
+  notify: set owner on git_repo_folder
 
 - name: download git repo
   git: 
     repo: "https://github.com/andrew-j-price/ansible-mysql-deploy-secure.git"
     dest: "{{ git_repo_folder }}/ansible-mysql-deploy-secure"
     update: no
+  notify: set owner on git_repo_folder
 
 - name: download git repo
   git: 
     repo: "https://github.com/andrew-j-price/ansible-windows-nsclient.git"
     dest: "{{ git_repo_folder }}/ansible-windows-nsclient"
     update: no
+  notify: set owner on git_repo_folder
 
 - name: download git repo
   git: 
     repo: "https://github.com/andrew-j-price/docker-monit-ansible.git"
     dest: "{{ git_repo_folder }}/docker-monit-ansible"
     update: no
+  notify: set owner on git_repo_folder
 
 - name: download git repo
   git: 
     repo: "https://github.com/andrew-j-price/toolchain.git"
     dest: "{{ git_repo_folder }}/toolchain"
     update: no
+  notify: set owner on git_repo_folder
 
 - name: download git repo
   git: 
     repo: "https://github.com/andrew-j-price/vagrant-ansible-building-blocks.git"
     dest: "{{ git_repo_folder }}/vagrant-ansible-building-blocks"
     update: no
-
-#- name: Ensure owner is set correctly # needed for Vagrant provisioning
-#  shell: chown -R {{ my_user }}:{{ my_group }} {{ git_repo_folder }}
+  notify: set owner on git_repo_folder
