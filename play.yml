@@ -1,7 +1,9 @@
 ---
+
 - hosts: all
-  sudo: yes
-  gather_facts: True
+  become: yes
+  become_user: root
+  gather_facts: true
   vars_files:
     - vars/common.yml
   roles:

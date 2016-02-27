@@ -4,9 +4,13 @@
   include: debian-based.yml
   when: ansible_os_family =='Debian'
 
-- name: Configure environment on CentOS/Fedora/RHEL
+- name: Configure environment on CentOS/RHEL
   include: rhel-based.yml
-  when: ansible_os_family =='RedHat'
+  when: ansible_os_family =='RedHat' and ansible_distribution !='Fedora'
+
+- name: Configure environment on Fedora
+  include: fedora.yml
+  when: ansible_distribution =='Fedora'
 
 - name: Configure User/Groups/SSH Keys
   include: user-management.yml
@@ -14,5 +18,5 @@
 - name: Clone git repos
   include: git.yml
 
-- name: Intialize vagrant boxes
-  include: vagrant.yml
+#- name: Intialize vagrant boxes
+#  include: vagrant.yml

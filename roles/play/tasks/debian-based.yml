@@ -1,25 +1,41 @@
 ---
 
-- name: enable Ansible ppa repo
-  apt_repository: repo='ppa:ansible/ansible'
+- name: Update cache if greater than 3600 seconds (1 hour)
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
 
-- name: add Docker apt key
-  apt_key: keyserver=keyserver.ubuntu.com id=36A1D7869245C8950F966E92D8576A8BA88D21E9
+- name: Enable Ansible ppa repo
+  apt_repository:
+    repo: 'ppa:ansible/ansible'
+
+- name: Add Docker apt key
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: 36A1D7869245C8950F966E92D8576A8BA88D21E9
 
 - name: add Docker Debian based repo
-  apt_repository: repo='deb https://get.docker.com/ubuntu docker main' state=present
+  apt_repository:
+    repo: 'deb https://get.docker.com/ubuntu docker main'
+    state: present
 
-- name: install packages on Debian based
-  apt: name={{ item }} state=latest update_cache=yes
+- name: Install packages on Debian based
+  apt:
+    name: "{{ item }}"
+    state: latest
   with_items:
     - ansible
     - curl
     - dpkg
+    - expect
     - freetds-bin
     - freetds-dev
+    - gcc
     - git
+    - git-review
     - lxc-docker
     - ldap-utils
+    - make
     - monit
     - mysql-client
     - netcat-openbsd
@@ -27,34 +43,45 @@
     - openssh-server
     - python-ceilometerclient
     - python-cinderclient
-    - python-glanceclient 
-    - python-heatclient 
-    - python-keystoneclient 
-    - python-neutronclient 
-    - python-novaclient 
+    - python-dev
+    - python-glanceclient
+    - python-heatclient
+    - python-keystoneclient
+    - python-neutronclient
+    - python-novaclient
     - python-openstackclient
-    - python-swiftclient 
+    - python-pip
+    - python-swiftclient
     - python-troveclient
-    - software-properties-common # For Ansible
+    - software-properties-common
     - tcpdump
     - vim
     - virtualbox
     - wget
 
-- name: download vagrant for Debian
-  get_url: url={{ vagrant_package_debian_source }} dest={{ vagrant_package_debian_install }} mode=744
+- name: Install packages via pip on Ubuntu based
+  pip:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - PyYAML
 
-- name: install deb packages
-  apt: deb={{ item }}
+- name: Download vagrant for Debian
+  get_url:
+    url: "{{ vagrant_package_debian_source }}"
+    dest: "{{ vagrant_package_debian_install }}"
+    mode: 0744
+
+- name: Install deb packages
+  apt:
+    deb: "{{ item }}"
   with_items:
     - "{{ vagrant_package_debian_install }}"
 
-- name: Ensure services are enabled on startup on Debian based systems
-  service: name={{ item }} enabled=yes
-  with_items:
-    - docker
-
-- name: Ensure services are running on Debian based systems
-  service: name={{ item }} state=started
+- name: Start the service and enable on startup on Debian based systems
+  service:
+    name: "{{ item }}"
+    enabled: yes
+    state: started
   with_items:
     - docker

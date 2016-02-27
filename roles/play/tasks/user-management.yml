@@ -1,27 +1,42 @@
 ---
 
 - name: Create primary user group
-  group: 
+  group:
     name: "{{ my_group }}"
     state: present
 
 - name: Create primary user account on Debian
-  user: 
-    name: "{{ my_user }}" 
-    group: "{{ my_group }}" 
-    shell: /bin/bash 
-    groups: "{{ my_groups_debian }}" 
+  user:
+    name: "{{ my_user }}"
+    group: "{{ my_group }}"
+    shell: /bin/bash
+    groups: "{{ my_groups_debian }}"
     append: yes
   when: ansible_os_family =='Debian'
 
-- name: Create primary user account on RHEL
-  user: 
-    name: "{{ my_user }}" 
-    group: "{{ my_group }}" 
-    shell: /bin/bash 
-    groups: "{{ my_groups_rhel }}" 
-    append: yes
+- name: Create docker group on RHEL based
+  group:
+    name: "{{ docker_group }}"
+    state: present
   when: ansible_os_family =='RedHat'
+
+- name: Create primary user account on RHEL
+  user:
+    name: "{{ my_user }}"
+    group: "{{ my_group }}"
+    shell: /bin/bash
+    groups: "{{ my_groups_rhel }}"
+    append: yes
+  when: ansible_os_family =='RedHat' and ansible_distribution !='Fedora'
+
+- name: Create primary user account on Fedora
+  user:
+    name: "{{ my_user }}"
+    group: "{{ my_group }}"
+    shell: /bin/bash
+    groups: "{{ my_groups_fedora }}"
+    append: yes
+  when: ansible_distribution =='Fedora'
 
 - name: Add my_user variable to sudoers
   lineinfile: >
@@ -33,24 +48,31 @@
 
 - name: Generate SSH key
   user: 
-    name: "{{ my_user }}" 
-    generate_ssh_key: yes 
-    ssh_key_bits: 2048 
+    name: "{{ my_user }}"
+    generate_ssh_key: yes
+    ssh_key_bits: 2048
     ssh_key_file: ".ssh/id_rsa"
 
+- name: fetch the generated public key
+  fetch:
+    src: "/home/{{ my_user }}/.ssh/id_rsa.pub"
+    dest: "/tmp/public-key-for-{{ ansible_hostname }}"
+    flat: yes
+
 - name: Add ssh public key to my_user variable account
-  authorized_key: 
+  authorized_key:
     user: "{{ my_user }}"
     key: "{{ item }}"
-    state: present 
-    exclusive: yes
+    state: present
   with_file:
-    - authorized_keys
+    - public_keys/default
+    - "/tmp/public-key-for-{{ ansible_hostname }}"
 
 - name: Add ssh public key to root
-  authorized_key: 
+  authorized_key:
     user: root
     key: "{{ item }}"
     state: present
   with_file:
-    - authorized_keys
+    - public_keys/default
+    - "/tmp/public-key-for-{{ ansible_hostname }}"
