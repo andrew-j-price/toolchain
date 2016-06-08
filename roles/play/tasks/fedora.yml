@@ -60,6 +60,7 @@
     state: latest
   with_items:
     - ansible
+    - shade
 
 - name: Download vagrant for Fedora
   get_url:

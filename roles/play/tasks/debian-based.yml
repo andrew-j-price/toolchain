@@ -41,6 +41,7 @@
     - netcat-openbsd
     - nmap
     - openssh-server
+    - pcregrep
     - python-ceilometerclient
     - python-cinderclient
     - python-dev
@@ -54,6 +55,7 @@
     - python-swiftclient
     - python-troveclient
     - software-properties-common
+    - sslscan
     - tcpdump
     - vim
     - virtualbox
@@ -64,7 +66,11 @@
     name: "{{ item }}"
     state: latest
   with_items:
+    - pip
     - PyYAML
+    - setuptools
+    - shade
+    - six
 
 - name: Download vagrant for Debian
   get_url:

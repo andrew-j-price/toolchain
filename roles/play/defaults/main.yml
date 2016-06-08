@@ -10,7 +10,7 @@ my_groups_rhel: 'docker'
 my_groups_fedora: 'docker'
 
 known_hosts_file: '/home/{{ my_user }}/.ssh/known_hosts'
-git_repo_folder: '/home/{{ my_group }}/git'
+git_repo_folder: '/home/{{ my_user }}/git'
 
 vagrant_package_debian_source: 'https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1_x86_64.deb'
 vagrant_package_rhel_source: 'https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1_x86_64.rpm'

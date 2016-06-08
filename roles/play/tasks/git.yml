@@ -35,7 +35,9 @@
     - { repo: 'https://github.com/andrew-j-price/DAM-docker-is-fun.git', folder: '{{ git_repo_folder }}/dam-docker-is-fun' }
     - { repo: 'https://github.com/andrew-j-price/duplo-building-blocks.git', folder: '{{ git_repo_folder }}/duplo-building-blocks' }
     - { repo: 'https://github.com/andrew-j-price/mssql-essentials.git', folder: '{{ git_repo_folder }}/mssql-essentials' }
+    - { repo: 'https://github.com/andrew-j-price/openstack-essentials.git', folder: '{{ git_repo_folder }}/openstack-essentials' }
     - { repo: 'https://github.com/andrew-j-price/toolchain.git', folder: '{{ git_repo_folder }}/toolchain' }
+    - { repo: 'https://github.com/kubernetes/kubernetes.git', folder: '{{ git_repo_folder }}/kubernetes' }
 
 - name: Ensure correct owner on git folder
   file:

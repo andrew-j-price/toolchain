@@ -57,6 +57,7 @@
     - python-pip
     - python-setuptools
     - PyYAML
+    - shade
     - tcpdump
     - vim
     - VirtualBox-5.0
