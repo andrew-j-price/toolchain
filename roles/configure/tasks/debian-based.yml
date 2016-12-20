@@ -1,0 +1,74 @@
+---
+
+- name: Update cache if greater than 3600 seconds (1 hour)
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: Add Docker apt key
+  apt_key:
+    keyserver: ha.pool.sks-keyservers.net
+    id: 58118E89F3A912897C070ADBF76221572C52609D
+  tags: repo
+
+- name: add Docker trusty based repo
+  apt_repository:
+    repo: 'deb https://apt.dockerproject.org/repo ubuntu-trusty main'
+    state: present
+  when: ansible_distribution_version == '14.04'
+  tags: repo
+
+- name: add Docker xenial based repo
+  apt_repository:
+    repo: 'deb https://apt.dockerproject.org/repo ubuntu-xenial main'
+    state: present
+  when: ansible_distribution_version == '16.04'
+  tags: repo
+
+- name: Install packages on Debian based
+  apt:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - apache2-utils
+    - bcrypt
+    - build-essential
+    - curl
+    - dkms
+    - docker-engine
+    - dpkg
+    - expect
+    - freetds-bin
+    - freetds-dev
+    - gcc
+    - git
+    - jq
+    - ldap-utils
+    - libmysqlclient-dev
+    - libffi-dev
+    - libssl-dev
+    - lsof
+    - make
+    - monit
+    - mysql-client
+    - netcat-openbsd
+    - nmap
+    - npm
+    - openssh-server
+    - python-dev
+    - python-pip
+    - python-selinux
+    - sshpass
+    - software-properties-common
+    - tcpdump
+    - tree
+    - vim
+    - wget
+
+- name: Start the service and enable on startup on Debian based systems
+  service:
+    name: "{{ item }}"
+    enabled: yes
+    state: started
+  with_items:
+    - docker

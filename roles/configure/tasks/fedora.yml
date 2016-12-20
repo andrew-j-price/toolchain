@@ -1,0 +1,44 @@
+---
+
+- name: Install python and dependencies for Ansible modules on Fedora
+  raw: dnf install -y python2 python2-dnf libselinux-python
+
+- name: Install the 'Development tools' package group
+  dnf:
+    name: "@Development tools"
+    state: latest
+
+- name: Install packages on Fedora based
+  dnf:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - curl
+    - docker
+    - freetds
+    - freetds-devel
+    - gcc
+    - git
+    - git-review
+    - lsof
+    - make
+    - mariadb
+    - monit
+    - nc
+    - nmap
+    - openldap-clients
+    - openssh-server
+    - python-devel
+    - python-pip
+    - python-setuptools
+    - python-pip
+    - tcpdump
+    - wget
+
+- name: Start the service and enable on startup on Fedora based systems
+  service:
+    name: "{{ item }}"
+    enabled: yes
+    state: started
+  with_items:
+    - docker

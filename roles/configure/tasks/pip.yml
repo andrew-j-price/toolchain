@@ -1,0 +1,44 @@
+- name: Install packages via pip
+  pip:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - pip
+    - setuptools
+    - ansible
+    - autopep8
+    - bcrypt
+    - docker-compose
+    - docker-py
+    - Flask
+    - Flask-MySQL
+    - Flask-RESTful
+    - flask-sqlalchemy
+    - flask-script
+    - Flask-WTF
+    - git-review
+    - jedi
+    - pep8
+    - prettytable
+    - pylint
+    - pytest
+    - pytest-flask
+    - python-ceilometerclient
+    - python-cinderclient
+    - python-glanceclient
+    - python-heatclient
+    - python-keystoneclient
+    - python-neutronclient
+    - python-novaclient
+    - python-openstackclient
+    - python-swiftclient
+    - pywinrm
+    - PyYAML
+    - requests
+    - selenium
+    - shade
+    - simplejson
+    - six
+    - sqlalchemy
+    - virtualenv
+    - xmltodict

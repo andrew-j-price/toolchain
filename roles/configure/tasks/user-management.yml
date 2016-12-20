@@ -47,17 +47,11 @@
     validate='visudo -cf %s'
 
 - name: Generate SSH key
-  user: 
+  user:
     name: "{{ my_user }}"
     generate_ssh_key: yes
     ssh_key_bits: 2048
     ssh_key_file: ".ssh/id_rsa"
-
-- name: fetch the generated public key
-  fetch:
-    src: "/home/{{ my_user }}/.ssh/id_rsa.pub"
-    dest: "/tmp/public-key-for-{{ ansible_hostname }}"
-    flat: yes
 
 - name: Add ssh public key to my_user variable account
   authorized_key:
@@ -66,13 +60,3 @@
     state: present
   with_file:
     - public_keys/default
-    - "/tmp/public-key-for-{{ ansible_hostname }}"
-
-- name: Add ssh public key to root
-  authorized_key:
-    user: root
-    key: "{{ item }}"
-    state: present
-  with_file:
-    - public_keys/default
-    - "/tmp/public-key-for-{{ ansible_hostname }}"

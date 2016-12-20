@@ -1,0 +1,13 @@
+---
+
+- name: Install desktop applications
+  include: desktop.yml
+
+- name: Install Atom IDE packages
+  become: true
+  become_user: "{{ my_user }}"
+  include: apm.yml
+
+- name: Download vagrant boxes
+  include: vagrant.yml
+  when: download_vagrant_boxes == 'true'

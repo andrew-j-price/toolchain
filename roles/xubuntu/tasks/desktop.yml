@@ -1,0 +1,53 @@
+---
+
+- name: Update cache if greater than 3600 seconds (1 hour)
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: Install packages on Debian based
+  apt:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - bridge-utils
+    - krb5-user
+    - libvirt-daemon
+    - libkrb5-dev
+    - libffi-dev
+    - network-manager-openconnect
+    - qemu-kvm
+    - remmina
+    - samba
+    - virt-manager
+    - virtualbox
+    - visualvm
+    - vlc
+    - wireshark
+    - xubuntu-desktop
+    - zenmap
+
+- name: Download vagrant for Debian
+  get_url:
+    url: "{{ vagrant_package_debian_source }}"
+    dest: "{{ vagrant_package_debian_install }}"
+    mode: 0744
+  tags:
+    - deb
+
+- name: Download atom for Debian
+  get_url:
+    url: "{{ atom_package_debian_source }}"
+    dest: "{{ atom_package_debian_install }}"
+    mode: 0744
+  tags:
+    - deb
+
+- name: Install deb packages
+  apt:
+    deb: "{{ item }}"
+  with_items:
+    - "{{ vagrant_package_debian_install }}"
+    - "{{ atom_package_debian_install }}"
+  tags:
+    - deb

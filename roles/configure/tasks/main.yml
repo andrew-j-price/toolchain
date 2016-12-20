@@ -3,20 +3,39 @@
 - name: Configure environment on Debian/Ubuntu
   include: debian-based.yml
   when: ansible_os_family =='Debian'
+  tags:
+    - debian
+    - ubuntu
 
 - name: Configure environment on CentOS/RHEL
   include: rhel-based.yml
   when: ansible_os_family =='RedHat' and ansible_distribution !='Fedora'
+  tags:
+    - centos
+    - rhel
+    - redhat
 
 - name: Configure environment on Fedora
   include: fedora.yml
   when: ansible_distribution =='Fedora'
+  tags:
+    - fedora
+
+- name: Install Python Packages
+  include: pip.yml
+  tags:
+    - pip
+    - python
 
 - name: Configure User/Groups/SSH Keys
   include: user-management.yml
+  tags:
+    - users
+    - ssh
+    - keys
 
 - name: Clone git repos
   include: git.yml
-
-#- name: Intialize vagrant boxes
-#  include: vagrant.yml
+  tags:
+    - git
+    - github

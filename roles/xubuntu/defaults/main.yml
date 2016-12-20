@@ -1,0 +1,9 @@
+---
+
+vagrant_package_debian_source: 'https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1_x86_64.deb'
+vagrant_package_debian_install: '/var/tmp/vagrant_install.deb'
+
+atom_package_debian_source: 'https://github.com/atom/atom/releases/download/v1.12.7/atom-amd64.deb'
+atom_package_debian_install: '/var/tmp/atom_install.deb'
+
+download_vagrant_boxes: 'false'

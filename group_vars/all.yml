@@ -1,0 +1,9 @@
+---
+
+my_user: andrew
+my_group: andrew
+
+download_vagrant_boxes: 'false'
+
+atom_package_debian_source: 'https://github.com/atom/atom/releases/download/v1.12.7/atom-amd64.deb'
+vagrant_package_debian_source: 'https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1_x86_64.deb'
