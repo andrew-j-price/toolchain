@@ -62,6 +62,7 @@
     - software-properties-common
     - tcpdump
     - tree
+    - unzip
     - vim
     - wget
 

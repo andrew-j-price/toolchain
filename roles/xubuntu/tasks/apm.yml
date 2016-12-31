@@ -7,6 +7,7 @@
     - "apm install autocomplete-python"
     - "apm install highlight-selected"
     - "apm install language-powershell"
+    - "apm install language-terraform"
     - "apm install linter"
     - "apm install linter-flake8"
     - "sudo npm install -g node-gyp"

@@ -7,3 +7,11 @@ download_vagrant_boxes: 'false'
 
 atom_package_debian_source: 'https://github.com/atom/atom/releases/download/v1.12.7/atom-amd64.deb'
 vagrant_package_debian_source: 'https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1_x86_64.deb'
+
+packer_source_location: 'https://releases.hashicorp.com/packer/0.12.1/packer_0.12.1_linux_amd64.zip'
+packer_download_destination: '/var/tmp/packer.zip'
+packer_checksum: '456e6245ea95705191a64e0556d7a7ecb7db570745b3b4b2e1ebf92924e9ef95'
+
+terraform_source_location: 'https://releases.hashicorp.com/terraform/0.8.2/terraform_0.8.2_linux_amd64.zip'
+terraform_download_destination: '/var/tmp/terraform.zip'
+terraform_checksum: 'a366fd2d7d8908d23acc23ab151fc692615a147f8832971bb43e42995554c652'

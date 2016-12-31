@@ -27,6 +27,11 @@
     - pip
     - python
 
+- name: Get additional binaries
+  include: binary.yml
+  tags:
+    - binary
+
 - name: Configure User/Groups/SSH Keys
   include: user-management.yml
   tags:
@@ -36,6 +41,8 @@
 
 - name: Clone git repos
   include: git.yml
+  become: true
+  become_user: "{{ my_user }}"
   tags:
     - git
     - github

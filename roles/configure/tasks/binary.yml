@@ -1,0 +1,37 @@
+---
+
+- name: Download packer
+  get_url:
+    url: "{{ packer_source_location }}"
+    dest: "{{ packer_download_destination }}"
+    checksum: "sha256:{{ packer_checksum }}"
+  register: packer_downloaded
+  tags:
+    - packer
+
+- name: Extract packer
+  unarchive:
+    src: "{{ packer_download_destination }}"
+    dest: /usr/local/bin/
+    copy: no
+  when: packer_downloaded.changed
+  tags:
+    - packer
+
+- name: Download terraform
+  get_url:
+    url: "{{ terraform_source_location }}"
+    dest: "{{ terraform_download_destination }}"
+    checksum: "sha256:{{ terraform_checksum }}"
+  register: terraform_downloaded
+  tags:
+    - terraform
+
+- name: Extract terraform
+  unarchive:
+    src: "{{ terraform_download_destination }}"
+    dest: /usr/local/bin/
+    copy: no
+  when: terraform_downloaded.changed
+  tags:
+    - terraform

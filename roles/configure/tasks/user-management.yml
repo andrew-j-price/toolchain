@@ -60,3 +60,4 @@
     state: present
   with_file:
     - public_keys/default
+    - public_keys/personal
