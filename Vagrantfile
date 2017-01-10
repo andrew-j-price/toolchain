@@ -8,9 +8,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define :xubuntu do |config|
     config.vm.box = "ubuntu/xenial64"
     config.vm.hostname = "xubuntu"
+    config.vm.boot_timeout = 300
     config.vm.network :private_network, ip: "192.168.56.30", :adapter => 2
     config.vm.provider "virtualbox" do |vb|
-      vb.memory = 1024
+      vb.memory = 3096
       vb.cpus = 1
 	    vb.gui = true
 	    vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
@@ -33,6 +34,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define :xenial do |config|
     config.vm.box = "ubuntu/xenial64"
     config.vm.hostname = "xenial"
+    config.vm.boot_timeout = 300
     config.vm.network :private_network, ip: "192.168.56.32", :adapter => 2
     config.vm.provider "virtualbox" do |vb|
       vb.name = "xenial"

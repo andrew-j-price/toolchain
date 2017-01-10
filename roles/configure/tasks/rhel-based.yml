@@ -53,6 +53,7 @@
     - python-pip
     - python-setuptools
     - tcpdump
+    - unzip
     - vim
     - wget
 

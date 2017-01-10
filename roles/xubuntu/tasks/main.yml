@@ -3,6 +3,11 @@
 - name: Install desktop applications
   include: desktop.yml
 
+- name: Configure additional user settings
+  include: user-management.yml
+  tags:
+    - users
+
 - name: Install Atom IDE packages
   become: true
   become_user: "{{ my_user }}"

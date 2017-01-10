@@ -32,14 +32,15 @@
     - { repo: 'https://github.com/andrew-j-price/ansible-freetds.git', folder: '{{ git_repo_folder }}/ansible-freetds' }
     - { repo: 'https://github.com/andrew-j-price/ansible-mysql-deploy-secure.git', folder: '{{ git_repo_folder }}/ansible-mysql-deploy-secure' }
     - { repo: 'https://github.com/andrew-j-price/ansible-windows-nsclient.git', folder: '{{ git_repo_folder }}/ansible-windows-nsclient' }
-    - { repo: 'https://github.com/andrew-j-price/atomic-fun.git', folder: '{{ git_repo_folder }}/atomic-fun' }
     - { repo: 'https://github.com/andrew-j-price/dabbling.git', folder: '{{ git_repo_folder }}/dabbling' }
     - { repo: 'https://github.com/andrew-j-price/DAM-docker-is-fun.git', folder: '{{ git_repo_folder }}/dam-docker-is-fun' }
     - { repo: 'https://github.com/andrew-j-price/duplo-building-blocks.git', folder: '{{ git_repo_folder }}/duplo-building-blocks' }
+    - { repo: 'https://github.com/andrew-j-price/kubernetes-on-atomic.git', folder: '{{ git_repo_folder }}/kubernetes-on-atomic' }
     - { repo: 'https://github.com/andrew-j-price/mssql-essentials.git', folder: '{{ git_repo_folder }}/mssql-essentials' }
     - { repo: 'https://github.com/andrew-j-price/node-redis-mongo.git', folder: '{{ git_repo_folder }}/node-redis-mongo' }
+    - { repo: 'https://github.com/andrew-j-price/provisioning-cookbook.git', folder: '{{ git_repo_folder }}/provisioning-cookbook' }
     - { repo: 'https://github.com/andrew-j-price/python-flask.git', folder: '{{ git_repo_folder }}/python-flask' }
-    - { repo: 'https://github.com/andrew-j-price/openstack-essentials.git', folder: '{{ git_repo_folder }}/openstack-essentials' }
+    - { repo: 'https://github.com/andrew-j-price/rps.git', folder: '{{ git_repo_folder }}/rps' }
     - { repo: 'https://github.com/andrew-j-price/toolchain.git', folder: '{{ git_repo_folder }}/toolchain' }
 
 - name: Ensure correct owner on git folder

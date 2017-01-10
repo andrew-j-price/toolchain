@@ -5,8 +5,12 @@ my_group: andrew
 
 download_vagrant_boxes: 'false'
 
-atom_package_debian_source: 'https://github.com/atom/atom/releases/download/v1.12.7/atom-amd64.deb'
-vagrant_package_debian_source: 'https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1_x86_64.deb'
+atom_source_location: 'https://github.com/atom/atom/releases/download/v1.12.7/atom-amd64.deb'
+atom_download_destination: '/var/tmp/atom_install.deb'
+
+vagrant_source_location: 'https://releases.hashicorp.com/vagrant/1.9.1/vagrant_1.9.1_x86_64.deb'
+vagrant_download_destination: '/var/tmp/vagrant_install.deb'
+vagrant_checksum: 'd006d6227e049725b64d8ba3967f0c82460a403ff40230515c93134d58723150'
 
 packer_source_location: 'https://releases.hashicorp.com/packer/0.12.1/packer_0.12.1_linux_amd64.zip'
 packer_download_destination: '/var/tmp/packer.zip'

@@ -1,0 +1,7 @@
+---
+
+- name: Append additional user groups
+  user:
+    name: "{{ my_user }}"
+    groups: "{{ my_groups_xubuntu }}"
+    append: yes

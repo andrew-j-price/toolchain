@@ -1,5 +1,9 @@
 ---
 
+- name: Add notepadqq rep
+  apt_repository:
+    repo: 'ppa:notepadqq-team/notepadqq'
+
 - name: Update cache if greater than 3600 seconds (1 hour)
   apt:
     update_cache: yes
@@ -10,44 +14,60 @@
     name: "{{ item }}"
     state: latest
   with_items:
-    - bridge-utils
-    - krb5-user
-    - libvirt-daemon
-    - libkrb5-dev
-    - libffi-dev
+    - baobab
+    - dkms
     - network-manager-openconnect
-    - qemu-kvm
+    - network-manager-openconnect-gnome
+    - network-manager-openvpn
+    - network-manager-openvpn-gnome
+    - network-manager-vpnc
+    - network-manager-vpnc-gnome
+    - notepadqq
     - remmina
     - samba
+    - tmux
+    - usb-creator-gtk
     - virt-manager
     - virtualbox
-    - visualvm
+    - virtualbox-dkms
     - vlc
     - wireshark
     - xubuntu-desktop
     - zenmap
 
-- name: Download vagrant for Debian
+- name: Download atom
   get_url:
-    url: "{{ vagrant_package_debian_source }}"
-    dest: "{{ vagrant_package_debian_install }}"
-    mode: 0744
+    url: "{{ atom_source_location }}"
+    dest: "{{ atom_download_destination }}"
+    mode: "0774"
+  register: atom_downloaded
   tags:
     - deb
+    - atom
 
-- name: Download atom for Debian
-  get_url:
-    url: "{{ atom_package_debian_source }}"
-    dest: "{{ atom_package_debian_install }}"
-    mode: 0744
-  tags:
-    - deb
-
-- name: Install deb packages
+- name: Install atom package
   apt:
-    deb: "{{ item }}"
-  with_items:
-    - "{{ vagrant_package_debian_install }}"
-    - "{{ atom_package_debian_install }}"
+    deb: "{{ atom_download_destination }}"
+  when: atom_downloaded.changed
   tags:
     - deb
+    - atom
+
+- name: Download vagrant
+  get_url:
+    url: "{{ vagrant_source_location }}"
+    dest: "{{ vagrant_download_destination }}"
+    checksum: "sha256:{{ vagrant_checksum }}"
+    mode: "0774"
+  register: vagrant_downloaded
+  tags:
+    - deb
+    - vagrant
+
+- name: Install vagrant package
+  apt:
+    deb: "{{ vagrant_download_destination }}"
+  when: vagrant_downloaded.changed
+  tags:
+    - deb
+    - vagrant

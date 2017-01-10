@@ -3,7 +3,7 @@
 - name: Download vagrant boxes
   command: "{{ item }}"
   with_items:
-    - "vagrant box add ubuntu/xenial64"
+    - "vagrant box add ubuntu/xenial64 --box-version 20170104.0.0"
     - "vagrant box add centos/7 --provider virtualbox"
   ignore_errors: yes
   tags:
