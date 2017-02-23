@@ -5,6 +5,7 @@
   with_items:
     - "apm install atom-beautify"
     - "apm install autocomplete-python"
+    - "apm install git-control"
     - "apm install highlight-selected"
     - "apm install language-powershell"
     - "apm install language-terraform"
@@ -13,7 +14,9 @@
     - "sudo npm install -g node-gyp"
     - "apm install platformio-ide-terminal"
     - "apm install python-debugger"
+    - "apm install remote-edit"
     - "apm install script"
+    - "apm install sublime-style-column-selection"
   ignore_errors: yes
   tags:
     - apm

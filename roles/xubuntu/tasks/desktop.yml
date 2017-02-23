@@ -1,8 +1,11 @@
 ---
 
-- name: Add notepadqq rep
+- name: Add ppa repos
   apt_repository:
-    repo: 'ppa:notepadqq-team/notepadqq'
+    repo: "{{ item }}"
+  with_items:
+    - "ppa:notepadqq-team/notepadqq"
+    - "ppa:linuxgndu/sqlitebrowser"
 
 - name: Update cache if greater than 3600 seconds (1 hour)
   apt:
@@ -16,6 +19,9 @@
   with_items:
     - baobab
     - dkms
+    - idle
+    - idle3
+    - gparted
     - network-manager-openconnect
     - network-manager-openconnect-gnome
     - network-manager-openvpn
@@ -25,6 +31,7 @@
     - notepadqq
     - remmina
     - samba
+    - sqlitebrowser
     - tmux
     - usb-creator-gtk
     - virt-manager
@@ -71,3 +78,21 @@
   tags:
     - deb
     - vagrant
+
+- name: Download apache directory studio
+  get_url:
+    url: "{{ directory_studio_source_location }}"
+    dest: "{{ directory_studio_download_destination }}"
+    checksum: "md5:{{ directory_studio_checksum }}"
+  register: directory_studio_downloaded
+  tags:
+    - directory
+
+- name: Extract apache directory studio
+  unarchive:
+    src: "{{ directory_studio_download_destination }}"
+    dest: "/home/{{ my_user }}"
+    copy: no
+  when: directory_studio_downloaded.changed
+  tags:
+    - directory

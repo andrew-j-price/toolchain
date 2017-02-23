@@ -8,9 +8,12 @@
     - ansible
     - autopep8
     - awscli
+    - awsebcli
     - bcrypt
+    - csvkit
     - docker-compose
     - docker-py
+    - flake8
     - Flask
     - Flask-MySQL
     - Flask-RESTful
@@ -18,6 +21,7 @@
     - flask-script
     - Flask-WTF
     - git-review
+    - gunicorn
     - jedi
     - pep8
     - prettytable

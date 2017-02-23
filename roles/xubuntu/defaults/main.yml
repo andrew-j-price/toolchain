@@ -5,6 +5,10 @@ my_groups_xubuntu: 'vboxusers'
 atom_source_location: 'https://github.com/atom/atom/releases/download/v1.12.7/atom-amd64.deb'
 atom_download_destination: '/var/tmp/atom_install.deb'
 
+directory_studio_source_location: 'http://www-us.apache.org/dist/directory/studio/2.0.0.v20161101-M12/ApacheDirectoryStudio-2.0.0.v20161101-M12-linux.gtk.x86_64.tar.gz'
+directory_studio_download_destination: '/var/tmp/ApacheDirectoryStudio.tar.gz'
+directory_studio_checksum: '38f6baa26d303dc28ce1f6df4c7a9d99'
+
 vagrant_source_location: 'https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1_x86_64.deb'
 vagrant_download_destination: '/var/tmp/vagrant_install.deb'
 vagrant_checksum: 'd006d6227e049725b64d8ba3967f0c82460a403ff40230515c93134d58723150'
