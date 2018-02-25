@@ -5,6 +5,7 @@
   with_items:
     - "vagrant box add ubuntu/xenial64 --box-version 20170104.0.0"
     - "vagrant box add centos/7 --provider virtualbox"
+    - "vagrant box add centos/atomic-host --box-version 7.20160730 --provider virtualbox"
   ignore_errors: yes
   tags:
     - vagrant

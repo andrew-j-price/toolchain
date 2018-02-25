@@ -41,6 +41,8 @@
     - gcc
     - git
     - git-review
+    - java-1.8.0-openjdk
+    - java-1.8.0-openjdk-devel
     - lsof
     - make
     - mariadb

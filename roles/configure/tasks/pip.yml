@@ -21,6 +21,7 @@
     - flask-script
     - Flask-WTF
     - git-review
+    - grip
     - gunicorn
     - jedi
     - pep8

@@ -4,9 +4,10 @@
   command: "{{ item }}"
   with_items:
     - "apm install atom-beautify"
+    - "apm install atom-jinja2"
     - "apm install autocomplete-python"
-    - "apm install git-control"
     - "apm install highlight-selected"
+    - "apm install language-docker"
     - "apm install language-powershell"
     - "apm install language-terraform"
     - "apm install linter"

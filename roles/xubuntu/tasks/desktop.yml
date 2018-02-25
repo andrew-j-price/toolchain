@@ -19,6 +19,8 @@
   with_items:
     - baobab
     - dkms
+    - exfat-fuse
+    - exfat-utils
     - idle
     - idle3
     - gparted
@@ -32,6 +34,7 @@
     - remmina
     - samba
     - sqlitebrowser
+    - ssh-askpass
     - tmux
     - usb-creator-gtk
     - virt-manager

@@ -38,6 +38,7 @@
     - { repo: 'https://github.com/andrew-j-price/kubernetes-on-atomic.git', folder: '{{ git_repo_folder }}/kubernetes-on-atomic' }
     - { repo: 'https://github.com/andrew-j-price/mssql-essentials.git', folder: '{{ git_repo_folder }}/mssql-essentials' }
     - { repo: 'https://github.com/andrew-j-price/node-redis-mongo.git', folder: '{{ git_repo_folder }}/node-redis-mongo' }
+    - { repo: 'https://github.com/andrew-j-price/project-auth.git', folder: '{{ git_repo_folder }}/project-auth' }
     - { repo: 'https://github.com/andrew-j-price/provisioning-cookbook.git', folder: '{{ git_repo_folder }}/provisioning-cookbook' }
     - { repo: 'https://github.com/andrew-j-price/python-flask.git', folder: '{{ git_repo_folder }}/python-flask' }
     - { repo: 'https://github.com/andrew-j-price/rps.git', folder: '{{ git_repo_folder }}/rps' }
